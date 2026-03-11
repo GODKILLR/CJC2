@@ -5,11 +5,12 @@ import { Button } from "@/components/ui/button";
 import cjcLogo from "@/assets/cjc-logo.png";
 
 const navLinks = [
-  { label: "Home", href: "#" },
-  { label: "Game Info", href: "#features" },
+  { label: "About", href: "#about" },
+  { label: "NFTs", href: "#nfts" },
+  { label: "Game Modes", href: "#modes" },
+  { label: "Features", href: "#features" },
+  { label: "Packs", href: "#packs" },
   { label: "Marketplace", href: "https://market.cjcrace.io" },
-  { label: "News", href: "#community" },
-  { label: "WhitePaper", href: "https://docs.cjcrace.io" },
 ];
 
 const Navbar = () => {
@@ -28,37 +29,38 @@ const Navbar = () => {
           <span className="font-display text-2xl font-bold text-gradient-gold">CJC RACE</span>
         </a>
 
-        {/* Desktop nav */}
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
+              target={link.href.startsWith("http") ? "_blank" : undefined}
+              rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
               className="font-body text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
             >
               {link.label}
             </a>
           ))}
-          <Button variant="hero" size="lg">
-            Download Game
-          </Button>
+          <a href="https://www.cjcrace.io/download" target="_blank" rel="noopener noreferrer">
+            <Button variant="hero" size="default">
+              Download Game
+            </Button>
+          </a>
         </div>
 
-        {/* Mobile toggle */}
         <button
-          className="text-foreground md:hidden"
+          className="text-foreground lg:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
-          className="border-t border-border bg-background px-6 pb-6 md:hidden"
+          className="border-t border-border bg-background px-6 pb-6 lg:hidden"
         >
           {navLinks.map((link) => (
             <a
@@ -70,9 +72,11 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
-          <Button variant="hero" size="lg" className="mt-4 w-full">
-            Download Game
-          </Button>
+          <a href="https://www.cjcrace.io/download" target="_blank" rel="noopener noreferrer">
+            <Button variant="hero" size="lg" className="mt-4 w-full">
+              Download Game
+            </Button>
+          </a>
         </motion.div>
       )}
     </motion.nav>
