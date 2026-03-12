@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import CinematicSection from "./CinematicSection";
+import sectionNfts from "@/assets/section-nfts.jpg";
 import nftHorse from "@/assets/nft-horse.png";
 import nftJockey from "@/assets/nft-jockey.png";
 import nftItems from "@/assets/nft-items.png";
@@ -11,7 +13,7 @@ const nftTypes = [
     title: "Racehorse NFTs",
     image: nftHorse,
     description:
-      "Racehorse NFTs possess attributes like speed, burst, stamina, and toughness. Each has preferences for race distance, direction, weather, and track type. When preferences align with race conditions, performance increases significantly.",
+      "Racehorse NFTs possess attributes like speed, burst, stamina, and toughness. Each has preferences for race distance, direction, weather, and track type.",
     stats: [
       { label: "Speed", desc: "Average speed determining min/max velocity" },
       { label: "Burst", desc: "Acceleration boost when whipped" },
@@ -25,7 +27,7 @@ const nftTypes = [
     title: "Jockey NFTs",
     image: nftJockey,
     description:
-      "Jockey NFTs possess attributes like weight, balance, and technique. Control your jockey manually or use auto-race mode. Execute precise timing on the exit indicator, control direction, adjust whip pressure, and use strategic speed boosts.",
+      "Jockey NFTs possess attributes like weight, balance, and technique. Control your jockey manually or use auto-race mode.",
     stats: [
       { label: "Technique", desc: "Affects racing set speed and push effectiveness" },
       { label: "Balance", desc: "Speed reduction per collision and fall resistance" },
@@ -39,7 +41,7 @@ const nftTypes = [
     title: "Item NFTs",
     image: nftItems,
     description:
-      "Item NFTs enhance specific attributes for either the Racehorse or Jockey. There are 12 types of items available. Players can equip up to 4 different Items from various categories in a racing set for maximum strategic advantage.",
+      "Item NFTs enhance specific attributes for either the Racehorse or Jockey. There are 12 types of items available. Equip up to 4 per racing set.",
     stats: [
       { label: "Whip", desc: "Enhances Racehorse's burst attribute" },
       { label: "Silks", desc: "Improves Jockey's balance" },
@@ -54,96 +56,87 @@ const NFTShowcaseSection = () => {
   const current = nftTypes[activeNFT];
 
   return (
-    <section id="nfts" className="section-padding bg-surface-elevated">
-      <div className="mx-auto max-w-7xl">
-        {/* Section label */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-4 flex items-center gap-3"
-        >
-          <span className="text-xl">⭐</span>
-          <span className="font-body text-xs tracking-[0.2em] text-primary">
-            YOUR ASSETS
-          </span>
-        </motion.div>
+    <>
+      {/* Cinematic banner */}
+      <CinematicSection
+        id="nfts"
+        label="EPIC"
+        title="Collect Unique NFT Assets"
+        description="Own NFT racehorses, jockeys, and items with unique attributes. Each NFT has distinct stats that affect performance on the racetrack. Build your ultimate racing set."
+        image={sectionNfts}
+        cta={{ label: "Visit Marketplace", href: "https://market.cjcrace.io" }}
+        cta2={{ label: "Explore NFTs", href: "#nft-detail" }}
+        align="right"
+      />
 
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12 font-display text-4xl font-bold md:text-5xl"
-        >
-          <span className="text-gradient-gold">NFT Collection</span>
-        </motion.h2>
+      {/* Detail section below */}
+      <section id="nft-detail" className="relative overflow-hidden bg-surface-elevated px-6 py-20 lg:px-12">
+        <div className="mx-auto max-w-7xl">
+          {/* Tabs */}
+          <div className="mb-12 flex justify-center gap-2">
+            {nftTypes.map((nft, i) => (
+              <button
+                key={nft.id}
+                onClick={() => setActiveNFT(i)}
+                className={`whitespace-nowrap rounded-xl border px-5 py-2.5 font-display text-xs tracking-wider transition-all ${
+                  activeNFT === i
+                    ? "border-primary/40 bg-primary/10 text-primary"
+                    : "border-border/50 text-muted-foreground hover:border-primary/20"
+                }`}
+              >
+                {nft.label}
+              </button>
+            ))}
+          </div>
 
-        {/* Tabs */}
-        <div className="mb-12 flex gap-2 overflow-x-auto">
-          {nftTypes.map((nft, i) => (
-            <button
-              key={nft.id}
-              onClick={() => setActiveNFT(i)}
-              className={`whitespace-nowrap rounded-full border px-6 py-3 font-display text-sm tracking-wider transition-all ${
-                activeNFT === i
-                  ? "border-primary bg-primary/10 text-primary"
-                  : "border-border text-muted-foreground hover:border-primary/30"
-              }`}
-            >
-              {nft.label}
-            </button>
-          ))}
+          {/* Content */}
+          <motion.div
+            key={current.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="grid items-center gap-12 lg:grid-cols-2"
+          >
+            {/* Image */}
+            <div className="flex justify-center">
+              <div className="relative">
+                <div className="absolute -inset-12 rounded-full bg-primary/5 blur-3xl" />
+                <img
+                  src={current.image}
+                  alt={current.title}
+                  className="relative z-10 max-h-[380px] w-auto drop-shadow-2xl"
+                />
+              </div>
+            </div>
+
+            {/* Info */}
+            <div>
+              <h3 className="mb-4 font-display text-2xl font-bold text-foreground md:text-3xl">
+                {current.title}
+              </h3>
+              <p className="mb-8 font-body text-sm leading-relaxed text-muted-foreground">
+                {current.description}
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                {current.stats.map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="rounded-xl border border-border/50 bg-card/60 p-4 backdrop-blur"
+                  >
+                    <p className="mb-1 font-display text-xs font-semibold tracking-wider text-primary">
+                      {stat.label}
+                    </p>
+                    <p className="font-body text-xs text-muted-foreground">
+                      {stat.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
-
-        {/* Content */}
-        <motion.div
-          key={current.id}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="grid items-center gap-12 lg:grid-cols-2"
-        >
-          {/* Image */}
-          <div className="flex justify-center">
-            <div className="relative">
-              <div className="absolute -inset-8 rounded-full bg-primary/5 blur-3xl" />
-              <img
-                src={current.image}
-                alt={current.title}
-                className="relative z-10 max-h-[400px] w-auto drop-shadow-2xl"
-              />
-            </div>
-          </div>
-
-          {/* Info */}
-          <div>
-            <h3 className="mb-4 font-display text-3xl font-bold text-foreground">
-              {current.title}
-            </h3>
-            <p className="mb-8 font-body text-base leading-relaxed text-muted-foreground">
-              {current.description}
-            </p>
-
-            {/* Stats grid */}
-            <div className="grid grid-cols-2 gap-4">
-              {current.stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-lg border border-border bg-card p-4"
-                >
-                  <p className="mb-1 font-display text-sm font-semibold text-primary">
-                    {stat.label}
-                  </p>
-                  <p className="font-body text-xs text-muted-foreground">
-                    {stat.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
