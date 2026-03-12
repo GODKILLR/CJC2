@@ -36,9 +36,9 @@ const NFTPacksSection = () => {
     <>
       <CinematicSection
         id="packs"
-        label="MARKETPLACE"
-        title="NFT Mystery Boxes"
-        description="Each NFT package includes Tycoon Club membership for earning opportunities including static development and referral bonuses. NFT rarity ranges from N to LR."
+        label="OWN"
+        title="Own Your Racehorse"
+        description="Each NFT package includes Tycoon Club membership with development and referral bonuses. Own unique racehorses, jockeys, and items. Rarity ranges from N to LR. Your ownership is permanent."
         image={sectionMarketplace}
         cta={{ label: "Visit Marketplace", href: "https://market.cjcrace.io" }}
         align="left"
@@ -54,6 +54,8 @@ const NFTPacksSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
+              whileHover={{ y: -10, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               className={`group relative flex flex-col overflow-hidden rounded-2xl border p-6 backdrop-blur transition-all hover:glow-gold ${
                 pack.featured
                   ? "border-primary/40 bg-primary/5"
@@ -61,9 +63,14 @@ const NFTPacksSection = () => {
               }`}
             >
               {pack.featured && (
-                <span className="absolute right-3 top-3 rounded-full bg-gradient-gold px-3 py-1 font-display text-[10px] font-bold tracking-wider text-primary-foreground">
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 500, delay: 0.5 }}
+                  className="absolute right-3 top-3 rounded-full bg-gradient-gold px-3 py-1 font-display text-[10px] font-bold tracking-wider text-primary-foreground"
+                >
                   POPULAR
-                </span>
+                </motion.span>
               )}
 
               <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center">
@@ -96,10 +103,12 @@ const NFTPacksSection = () => {
                 </p>
               )}
 
-              <a
+              <motion.a
                 href="https://market.cjcrace.io"
                 target="_blank"
                 rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 className={`block rounded-xl border px-4 py-2.5 text-center font-display text-xs font-semibold tracking-wider transition-all ${
                   pack.featured
                     ? "border-primary/40 bg-primary/10 text-primary hover:bg-primary/20"
@@ -107,7 +116,7 @@ const NFTPacksSection = () => {
                 }`}
               >
                 Get Pack
-              </a>
+              </motion.a>
             </motion.div>
           ))}
         </div>

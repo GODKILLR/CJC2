@@ -6,29 +6,29 @@ import sectionAdventure from "@/assets/section-adventure.jpg";
 const quickCards = [
   {
     icon: Coins,
-    title: "EARN",
-    desc: "Earn CJC coins through racing",
+    title: "WIN",
+    desc: "Win real rewards through racing",
     href: "#packs",
     image: sectionAdventure,
   },
   {
     icon: Trophy,
-    title: "GAME MODES",
-    desc: "Compete in 5 unique modes",
+    title: "COMPETE",
+    desc: "Race against players worldwide",
     href: "#modes",
     image: null,
   },
   {
     icon: Swords,
-    title: "NFT ASSETS",
-    desc: "Collect horses, jockeys & items",
+    title: "OWN",
+    desc: "Own unique racehorse NFTs",
     href: "#nfts",
     image: null,
   },
   {
     icon: BarChart3,
-    title: "MARKETPLACE",
-    desc: "Trade NFTs on the market",
+    title: "TRADE",
+    desc: "Buy, sell, trade your assets",
     href: "https://market.cjcrace.io",
     image: null,
   },
@@ -37,11 +37,10 @@ const quickCards = [
 const HeroSection = () => {
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
-      {/* Background */}
+      {/* Simplified animated background */}
       <div className="absolute inset-0">
         <img src={heroImage} alt="CJC Race horses" className="h-full w-full object-cover object-center" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/30" />
-        <div className="absolute inset-0 bg-background/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/50" />
       </div>
 
       {/* Centered content */}
@@ -52,9 +51,9 @@ const HeroSection = () => {
           transition={{ duration: 0.8 }}
           className="mb-8 font-display text-4xl font-bold leading-[1.1] md:text-5xl lg:text-7xl"
         >
-          <span className="text-foreground">Shaping the Future of</span>
+          <span className="text-foreground">Own Racehorse.</span>
           <br />
-          <span className="text-gradient-gold">Blockchain Horse Racing</span>
+          <span className="text-gradient-gold">Race Against the World.</span>
         </motion.h1>
 
         {/* Glassmorphic CTA card */}
@@ -65,10 +64,10 @@ const HeroSection = () => {
           className="mb-6 rounded-2xl border border-primary/20 bg-primary/5 p-8 backdrop-blur-xl"
         >
           <p className="mb-3 font-display text-lg font-semibold tracking-wide text-foreground md:text-xl">
-            Play-to-Earn Racing
+            Skill-Based Racing. Real Rewards.
           </p>
           <p className="mb-5 font-display text-2xl font-bold text-gradient-gold md:text-3xl">
-            Download Now for Free
+            Start Racing Today
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <a
@@ -95,26 +94,19 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* Quick access cards - WoD style */}
+      {/* Quick access cards */}
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-8">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.6 }}
-          className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4"
-        >
-          {quickCards.map((card, i) => (
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+          {quickCards.map((card) => (
             <a
               key={card.title}
               href={card.href}
               target={card.href.startsWith("http") ? "_blank" : undefined}
               rel={card.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card/60 backdrop-blur-lg transition-all hover:border-primary/40 hover:glow-gold"
+              className="group rounded-2xl border border-border/50 bg-card/60 backdrop-blur-lg transition-all hover:border-primary/40 hover:bg-primary/5"
             >
-              {/* Card background gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-              <div className="relative z-10 p-5">
-                <card.icon className="mb-3 h-6 w-6 text-primary" />
+              <div className="p-5">
+                <card.icon className="mb-3 h-6 w-6 text-primary transition-transform group-hover:scale-110" />
                 <p className="mb-1 font-display text-sm font-bold tracking-wider text-primary">
                   {card.title}
                 </p>
@@ -124,7 +116,7 @@ const HeroSection = () => {
               </div>
             </a>
           ))}
-        </motion.div>
+        </div>
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />

@@ -5,9 +5,9 @@ const AboutSection = () => {
   return (
     <CinematicSection
       id="about"
-      label="ADVENTURE"
-      title="The World Beyond Imagination"
-      description="Climax Jockey Club (CJC Race) is an exhilarating real-time racehorse racing game designed for both gamers and crypto enthusiasts. Compete with Racehorses, Jockeys, and Items — each possessing unique attributes and abilities. Winners earn CJC coins and valuable props. Races are available 24/7 worldwide."
+      label="OWN IT"
+      title="Your Racehorse. Your Legacy."
+      description="CJC Race is a skill-based real-time horse racing competition where you own your racehorse, control the jockey, and race against players worldwide. Every race is a test of skill. Every win brings real rewards. Compete 24/7 across the globe."
       image={sectionAdventure}
       cta={{ label: "Explore More", href: "#nfts" }}
       align="left"

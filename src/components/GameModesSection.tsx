@@ -30,9 +30,9 @@ const GameModesSection = () => {
     <>
       <CinematicSection
         id="modes"
-        label="LEGEND"
-        title="Conquer the Racetrack"
-        description="From Champion Stakes to PVP battles, CJC Race offers multiple competitive modes. Each mode features unique rules, rewards, and challenges. Rise through the ranks and claim your glory."
+        label="COMPETE"
+        title="Prove Your Skill"
+        description="From Champion Stakes to PVP battles, CJC Race offers multiple competitive modes. Each mode tests your skill with unique rules, rewards, and challenges. Rise through the ranks. Win real rewards."
         image={sectionModes}
         cta={{ label: "View Game Modes", href: "https://www.cjcrace.io/gameinfo" }}
         align="left"

@@ -5,9 +5,9 @@ const FeaturesSection = () => {
   return (
     <CinematicSection
       id="features"
-      label="EXPLORE"
-      title="Deep Gameplay Features"
-      description="Master manual jockey control or use auto-race mode. Cultivate crops on your farm, restore horse condition at the Day Spa, acquire Special Skills via Spell Books, complete Daily Missions for diamonds, and upgrade NFTs through Burning & Synthesis."
+      label="MASTER"
+      title="Skill Over Chance"
+      description="Take manual control of your jockey or use auto-race mode. Build your farm, restore horse condition at the Day Spa, acquire Special Skills through Spell Books, complete Daily Missions, and upgrade NFTs via Burning & Synthesis. Your skill determines victory."
       image={sectionFeatures}
       cta={{ label: "Learn More", href: "https://docs.cjcrace.io" }}
       cta2={{ label: "Download", href: "https://www.cjcrace.io/download" }}

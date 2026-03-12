@@ -72,12 +72,17 @@ const NFTShowcaseSection = () => {
       {/* Detail section below */}
       <section id="nft-detail" className="relative overflow-hidden bg-surface-elevated px-6 py-20 lg:px-12">
         <div className="mx-auto max-w-7xl">
-          {/* Tabs */}
+          {/* Tabs with animation */}
           <div className="mb-12 flex justify-center gap-2">
             {nftTypes.map((nft, i) => (
-              <button
+              <motion.button
                 key={nft.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
                 onClick={() => setActiveNFT(i)}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
                 className={`whitespace-nowrap rounded-xl border px-5 py-2.5 font-display text-xs tracking-wider transition-all ${
                   activeNFT === i
                     ? "border-primary/40 bg-primary/10 text-primary"
@@ -85,7 +90,7 @@ const NFTShowcaseSection = () => {
                 }`}
               >
                 {nft.label}
-              </button>
+              </motion.button>
             ))}
           </div>
 
@@ -100,10 +105,13 @@ const NFTShowcaseSection = () => {
             {/* Image */}
             <div className="flex justify-center">
               <div className="relative">
-                <div className="absolute -inset-12 rounded-full bg-primary/5 blur-3xl" />
-                <img
+                <div className="absolute -inset-16 rounded-full bg-primary/5 blur-3xl" />
+                <motion.img
                   src={current.image}
                   alt={current.title}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.5 }}
                   className="relative z-10 max-h-[380px] w-auto drop-shadow-2xl"
                 />
               </div>

@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 import sectionCommunity from "@/assets/section-community.jpg";
 
 const stats = [
-  { value: "24/7", label: "Races Available" },
-  { value: "5", label: "Game Modes" },
-  { value: "15,000", label: "Total NFTs" },
-  { value: "6", label: "Rarity Tiers" },
+  { value: "24/7", label: "Global Racing" },
+  { value: "5", label: "Competitive Modes" },
+  { value: "15,000", label: "NFTs Owned" },
+  { value: "6", label: "Rarity Levels" },
 ];
 
 const CommunitySection = () => {
@@ -14,9 +14,9 @@ const CommunitySection = () => {
     <>
       <CinematicSection
         id="community"
-        label="COMMUNITY"
-        title="A Community Like No Other"
-        description="Join the Tycoon Club and unlock exclusive earning opportunities. Members benefit from static development bonuses, referral rewards, and access to premium race modes. Connect with players around the world who share your passion."
+        label="TOGETHER"
+        title="Race Against the World"
+        description="Join the Tycoon Club and unlock exclusive earning opportunities. Members get development bonuses, referral rewards, and premium race access. Connect with racers worldwide who share your competitive drive."
         image={sectionCommunity}
         cta={{ label: "Join Discord", href: "#" }}
         cta2={{ label: "Join Telegram", href: "#" }}
