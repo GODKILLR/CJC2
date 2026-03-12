@@ -1,6 +1,7 @@
+import CinematicSection from "./CinematicSection";
 import { motion } from "framer-motion";
+import sectionMarketplace from "@/assets/section-marketplace.jpg";
 import nftPack from "@/assets/nft-pack.png";
-import { Button } from "@/components/ui/button";
 
 const packs = [
   {
@@ -32,51 +33,31 @@ const packs = [
 
 const NFTPacksSection = () => {
   return (
-    <section id="packs" className="section-padding bg-surface-elevated">
-      <div className="mx-auto max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-4 flex items-center gap-3"
-        >
-          <span className="text-xl">⭐</span>
-          <span className="font-body text-xs tracking-[0.2em] text-primary">
-            GET STARTED
-          </span>
-        </motion.div>
+    <>
+      <CinematicSection
+        id="packs"
+        label="MARKETPLACE"
+        title="NFT Mystery Boxes"
+        description="Each NFT package includes Tycoon Club membership for earning opportunities including static development and referral bonuses. NFT rarity ranges from N to LR."
+        image={sectionMarketplace}
+        cta={{ label: "Visit Marketplace", href: "https://market.cjcrace.io" }}
+        align="left"
+      />
 
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-4 font-display text-4xl font-bold md:text-5xl"
-        >
-          <span className="text-gradient-gold">NFT Mystery Boxes</span>
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12 max-w-2xl font-body text-base text-muted-foreground"
-        >
-          Each NFT package includes Tycoon Club membership for earning opportunities
-          including static development and referral bonuses. NFT rarity ranges from N to LR.
-        </motion.p>
-
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {/* Pack cards */}
+      <section className="bg-surface-elevated px-6 py-16 lg:px-12">
+        <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-2 lg:grid-cols-4">
           {packs.map((pack, i) => (
             <motion.div
               key={pack.name}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`group relative flex flex-col overflow-hidden rounded-2xl border p-6 transition-all hover:glow-gold ${
+              className={`group relative flex flex-col overflow-hidden rounded-2xl border p-6 backdrop-blur transition-all hover:glow-gold ${
                 pack.featured
-                  ? "border-primary bg-primary/5"
-                  : "border-border bg-card"
+                  ? "border-primary/40 bg-primary/5"
+                  : "border-border/50 bg-card/40"
               }`}
             >
               {pack.featured && (
@@ -85,7 +66,7 @@ const NFTPacksSection = () => {
                 </span>
               )}
 
-              <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center">
+              <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center">
                 <img
                   src={nftPack}
                   alt={pack.name}
@@ -93,10 +74,10 @@ const NFTPacksSection = () => {
                 />
               </div>
 
-              <h3 className="mb-1 font-display text-lg font-bold text-foreground">
+              <h3 className="mb-1 font-display text-base font-bold tracking-wider text-foreground">
                 {pack.name}
               </h3>
-              <p className="mb-4 font-display text-2xl font-bold text-primary">
+              <p className="mb-4 font-display text-xl font-bold text-primary">
                 {pack.price}
               </p>
 
@@ -115,56 +96,23 @@ const NFTPacksSection = () => {
                 </p>
               )}
 
-              <Button
-                variant={pack.featured ? "hero" : "heroOutline"}
-                className="w-full"
-                size="sm"
+              <a
+                href="https://market.cjcrace.io"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`block rounded-xl border px-4 py-2.5 text-center font-display text-xs font-semibold tracking-wider transition-all ${
+                  pack.featured
+                    ? "border-primary/40 bg-primary/10 text-primary hover:bg-primary/20"
+                    : "border-border/50 text-foreground hover:border-primary/30"
+                }`}
               >
                 Get Pack
-              </Button>
+              </a>
             </motion.div>
           ))}
         </div>
-
-        {/* Rarity table */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-12 overflow-hidden rounded-xl border border-border"
-        >
-          <table className="w-full text-left">
-            <thead>
-              <tr className="border-b border-border bg-card">
-                <th className="px-4 py-3 font-display text-xs tracking-wider text-primary">Rarity</th>
-                <th className="px-4 py-3 font-display text-xs tracking-wider text-primary">Probability</th>
-                <th className="hidden px-4 py-3 font-display text-xs tracking-wider text-primary md:table-cell">Horses</th>
-                <th className="hidden px-4 py-3 font-display text-xs tracking-wider text-primary md:table-cell">Jockeys</th>
-                <th className="hidden px-4 py-3 font-display text-xs tracking-wider text-primary md:table-cell">Items</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                { rarity: "N", prob: "40%", h: "2,000", j: "2,000", it: "2,000" },
-                { rarity: "R", prob: "28%", h: "1,400", j: "1,400", it: "1,400" },
-                { rarity: "SR", prob: "18%", h: "900", j: "900", it: "900" },
-                { rarity: "SSR", prob: "9%", h: "450", j: "450", it: "450" },
-                { rarity: "UR", prob: "4.5%", h: "225", j: "225", it: "225" },
-                { rarity: "LR", prob: "0.5%", h: "25", j: "25", it: "25" },
-              ].map((row) => (
-                <tr key={row.rarity} className="border-b border-border/50 last:border-0">
-                  <td className="px-4 py-2.5 font-display text-sm font-semibold text-foreground">{row.rarity}</td>
-                  <td className="px-4 py-2.5 font-body text-sm text-muted-foreground">{row.prob}</td>
-                  <td className="hidden px-4 py-2.5 font-body text-sm text-muted-foreground md:table-cell">{row.h}</td>
-                  <td className="hidden px-4 py-2.5 font-body text-sm text-muted-foreground md:table-cell">{row.j}</td>
-                  <td className="hidden px-4 py-2.5 font-body text-sm text-muted-foreground md:table-cell">{row.it}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </motion.div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
